@@ -2,6 +2,7 @@ from typing import Annotated
 from fastapi import Depends, FastAPI, Query
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 app = FastAPI()
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -9,9 +10,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 class User(BaseModel):
     username: str
-    email: str | None = None
-    full_name: str | None = None
-    disabled: bool | None = None
+    email: str | None
+    full_name: str | None
+    disabled: bool | None
 
 
 def fake_decode_token(token):
